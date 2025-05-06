@@ -1,7 +1,8 @@
 import { Compass } from "lucide-react";
 import Link from "next/link";
+import { JSX } from "react";
 
-export const HomeFooter = () => {
+export const HomeFooter = (): JSX.Element => {
   return (
     <footer className="border-t py-6 bg-[#1e293b] text-[#f1f5f9]">
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 md:flex-row px-4">

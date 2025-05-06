@@ -1,7 +1,8 @@
 import { ArrowRight, Calendar, PiggyBank } from "lucide-react";
 import Link from "next/link";
+import { JSX } from "react";
 
-export const HeroSection = () => {
+export const HeroSection = (): JSX.Element => {
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-r from-[#0077b6] via-[#0096c7] to-[#48cae4] text-[#f1f5f9]">
       <div className="container mx-auto px-4 md:px-6">

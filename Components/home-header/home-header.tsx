@@ -1,7 +1,8 @@
 import { Compass } from "lucide-react";
 import Link from "next/link";
+import { JSX } from "react";
 
-export const HomeHeader = () => {
+export const HomeHeader = (): JSX.Element => {
   return (
     <header className="border-b bg-[#f1f5f9] text-[#1e293b]">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">

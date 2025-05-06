@@ -1,6 +1,7 @@
+import { JSX } from "react";
 import { HowWorksCards } from "./HowWorksCards";
 
-export const HowWorks = () => {
+export const HowWorks = (): JSX.Element => {
   const steps = [
     {
       step: 1,

@@ -2,6 +2,7 @@
 
 import { JSX, ReactNode } from "react";
 import { Button } from "../button/button";
+import { signInWithGoogle } from "@/supabase/googleAuthFunction";
 
 export const LoginButton = ({
   children,
@@ -12,7 +13,7 @@ export const LoginButton = ({
 }): JSX.Element => {
   const logInWithGoogle = async (): Promise<void> => {
     try {
-      //   await signInWithGoogle({});
+      await signInWithGoogle({});
     } catch (error) {
       throw error;
     } finally {

@@ -1,10 +1,14 @@
-import { JSX, ReactElement } from "react";
+"use client";
+
+import { JSX, ReactNode } from "react";
 import { Button } from "../button/button";
 
 export const LoginButton = ({
   children,
+  className,
 }: {
-  children: string | ReactElement<"span"> | ReactElement<"svg">;
+  children: ReactNode;
+  className: string;
 }): JSX.Element => {
   const logInWithGoogle = async (): Promise<void> => {
     try {
@@ -15,5 +19,9 @@ export const LoginButton = ({
     }
   };
 
-  return <Button onClick={logInWithGoogle}>{children}</Button>;
+  return (
+    <Button className={className} onClick={logInWithGoogle}>
+      {children}
+    </Button>
+  );
 };

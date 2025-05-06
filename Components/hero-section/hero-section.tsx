@@ -1,6 +1,7 @@
 import { ArrowRight, Calendar, PiggyBank } from "lucide-react";
 import Link from "next/link";
 import { JSX } from "react";
+import { LoginButton } from "../LoginButton/LoginButton";
 
 export const HeroSection = (): JSX.Element => {
   return (
@@ -21,13 +22,12 @@ export const HeroSection = (): JSX.Element => {
               expert travel recommendations—all tailored to your preferences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/signup"
+              <LoginButton
                 className="flex items-center gap-2 px-6 py-3 bg-[#ff6f61] font-semibold rounded-lg shadow-md hover:bg-[#e85b50] transition"
                 aria-label="Get Started"
               >
                 Get Started <ArrowRight className="h-5 w-5" />
-              </Link>
+              </LoginButton>
               <Link
                 href="/how-it-works"
                 className="px-6 py-3 border border-[#f1f5f9] font-semibold rounded-lg hover:bg-[#f1f5f9]/20 hover:text-[#1e293b] transition"

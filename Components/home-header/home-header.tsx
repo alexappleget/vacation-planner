@@ -1,6 +1,6 @@
 import { Compass } from "lucide-react";
-import Link from "next/link";
 import { JSX } from "react";
+import { LoginButton } from "../LoginButton/LoginButton";
 
 export const HomeHeader = (): JSX.Element => {
   return (
@@ -11,12 +11,9 @@ export const HomeHeader = (): JSX.Element => {
           <span>Vacation Planner</span>
         </div>
 
-        <Link
-          href="/signup"
-          className="px-4 py-2 text-sm font-medium rounded-lg bg-[#0077b6] text-[#f1f5f9] hover:bg-[#0096c7] transition"
-        >
-          Sign Up
-        </Link>
+        <LoginButton className="px-4 py-2 text-sm font-medium rounded-lg bg-[#0077b6] text-[#f1f5f9] hover:bg-[#005f99] transition">
+          Login
+        </LoginButton>
       </div>
     </header>
   );

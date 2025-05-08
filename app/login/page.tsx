@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function Login() {
   return (
-    <section className="h-screen flex flex-col bg-white text-black px-4">
+    <section className="h-screen flex flex-col px-4">
       <div className="container mx-auto border-b border-black">
         <Link
           className="flex items-center h-16 gap-2 font-bold text-xl"

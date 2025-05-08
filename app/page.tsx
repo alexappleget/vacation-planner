@@ -1,3 +1,5 @@
+"use client";
+
 import { HeroSection } from "@/Components/hero-section/hero-section";
 import { HomeFooter } from "@/Components/home-footer/home-footer";
 import { HomeHeader } from "@/Components/home-header/home-header";

@@ -7,13 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/select/select";
-import { StepThreeProps } from "../types/FormTypes";
+import { IFormSteps } from "../types/FormTypes";
 
-export const StepThree = ({
-  handleCuisineToggle,
-  form,
-  setForm,
-}: StepThreeProps) => {
+export const StepThree = ({ form, setForm }: IFormSteps) => {
   const cuisines = [
     "Italian",
     "Japanese",
@@ -32,6 +28,23 @@ export const StepThree = ({
     "Brazilian",
     "Caribbean",
   ];
+
+  const handleCuisineToggle = (cuisine: string) => {
+    setForm((prev) => {
+      const cuisines = [...prev.favoriteCuisines];
+      if (cuisines.includes(cuisine)) {
+        return {
+          ...prev,
+          favoriteCuisines: cuisines.filter((c) => c !== cuisine),
+        };
+      } else {
+        return {
+          ...prev,
+          favoriteCuisines: [...cuisines, cuisine],
+        };
+      }
+    });
+  };
 
   return (
     <div className="space-y-4">
@@ -70,16 +83,18 @@ export const StepThree = ({
           {cuisines.map((cuisine) => (
             <div
               key={cuisine}
-              className="flex items-center space-x-2 rounded-md border p-3"
+              className="flex items-center space-x-2 rounded-md border p-3 cursor-pointer"
+              onClick={() => handleCuisineToggle(cuisine)}
             >
               <Checkbox
                 id={cuisine.toLowerCase().replace(/\s+/g, "-")}
                 checked={form.favoriteCuisines.includes(cuisine)}
-                onCheckedChange={() => handleCuisineToggle(cuisine)}
+                className="cursor-pointer"
               />
               <Label
                 htmlFor={cuisine.toLowerCase().replace(/\s+/g, "-")}
                 className="cursor-pointer"
+                onClick={() => handleCuisineToggle(cuisine)}
               >
                 {cuisine}
               </Label>

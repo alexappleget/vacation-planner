@@ -1,10 +1,9 @@
 import { redirect } from "next/navigation";
-import { createClient } from "./client";
+import { supabaseClient } from "./client";
 
 export const signInWithGoogle = async (options?: { redirectPath?: string }) => {
   try {
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: options?.redirectPath

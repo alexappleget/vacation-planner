@@ -10,13 +10,17 @@ import {
   CardTitle,
 } from "@/Components/card/card";
 import { ArrowRight, Compass } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StepOne } from "./steps/step-one";
 import { StepTwo } from "./steps/step-two";
 import { StepThree } from "./steps/step-three";
 import { FormState } from "./types/FormTypes";
+import { Session } from "@supabase/supabase-js";
+import { checkSession, fetchProfile } from "./functions/onboardingFunctions";
+import { updateUserProfile } from "@/supabase/functions/profile";
 
 export default function Onboarding() {
+  const [session, setSession] = useState<Session | null>(null);
   const [step, setStep] = useState<number>(1);
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -27,47 +31,25 @@ export default function Onboarding() {
     favoriteCuisines: [] as string[],
   });
 
+  useEffect(() => {
+    checkSession({ setSession });
+  }, []);
+
+  useEffect(() => {
+    if (session) {
+      fetchProfile({ userId: session.user.id, setForm });
+    }
+  }, [session]);
+
+  const handleComplete = async () => {
+    if (session) {
+      await updateUserProfile(form, session.user.id);
+      window.location.href = "/dashboard";
+    }
+  };
+
   const handleNext = () => {
     setStep((previous) => previous + 1);
-  };
-
-  const handleComplete = () => {
-    //submit data to Supabase
-    window.location.href = "/dashboard";
-  };
-
-  const handleInterestToggle = (interest: string) => {
-    setForm((prev) => {
-      const interests = [...prev.interests];
-      if (interests.includes(interest)) {
-        return {
-          ...prev,
-          interests: interests.filter((i) => i !== interest),
-        };
-      } else {
-        return {
-          ...prev,
-          interests: interests.filter((i) => i !== interest),
-        };
-      }
-    });
-  };
-
-  const handleCuisineToggle = (cuisine: string) => {
-    setForm((prev) => {
-      const cuisines = [...prev.favoriteCuisines];
-      if (cuisines.includes(cuisine)) {
-        return {
-          ...prev,
-          favoriteCuisines: cuisines.filter((c) => c !== cuisine),
-        };
-      } else {
-        return {
-          ...prev,
-          favoriteCuisines: cuisines.filter((c) => c !== cuisine),
-        };
-      }
-    });
   };
 
   return (
@@ -108,20 +90,9 @@ export default function Onboarding() {
 
             {step === 1 && <StepOne form={form} setForm={setForm} />}
 
-            {step === 2 && (
-              <StepTwo
-                handleInterestToggle={handleInterestToggle}
-                form={form}
-              />
-            )}
+            {step === 2 && <StepTwo form={form} setForm={setForm} />}
 
-            {step === 3 && (
-              <StepThree
-                handleCuisineToggle={handleCuisineToggle}
-                form={form}
-                setForm={setForm}
-              />
-            )}
+            {step === 3 && <StepThree form={form} setForm={setForm} />}
           </CardContent>
           <CardFooter className="flex justify-between">
             {step > 1 ? (

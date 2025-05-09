@@ -9,28 +9,7 @@ export interface FormState {
   favoriteCuisines: string[];
 }
 
-export interface StepOneProps {
-  form: FormState;
-  setForm: React.Dispatch<React.SetStateAction<FormState>>;
-}
-
-export interface StepTwoProps {
-  handleInterestToggle: (interest: string) => void;
-  form: FormState;
-}
-
-export interface StepThreeProps {
-  handleCuisineToggle: (cuisine: string) => void;
-  form: FormState;
-  setForm: React.Dispatch<React.SetStateAction<FormState>>;
-}
-
-export interface StepFourProps {
-  handleTravelStyleToggle: (travelStyle: string) => void;
-  form: FormState;
-}
-
-export interface StepFiveProps {
+export interface IFormSteps {
   form: FormState;
   setForm: React.Dispatch<React.SetStateAction<FormState>>;
 }

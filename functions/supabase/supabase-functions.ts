@@ -1,5 +1,5 @@
-import { FormState } from "@/app/onboarding/types/FormTypes";
-import { supabaseClient } from "../client";
+import { supabaseClient } from "@/supabase/client";
+import { IOnboardingForm } from "@/types/onboarding/onboarding-types";
 
 export const fetchUserProfile = async ({ userId }: { userId: string }) => {
   const { data: profile, error: profileError } = await supabaseClient
@@ -15,7 +15,10 @@ export const fetchUserProfile = async ({ userId }: { userId: string }) => {
   return profile;
 };
 
-export const updateUserProfile = async (form: FormState, userId: string) => {
+export const updateUserProfile = async (
+  form: IOnboardingForm,
+  userId: string
+) => {
   const { error: profileError } = await supabaseClient
     .from("profiles")
     .update({

@@ -11,18 +11,21 @@ import {
 } from "@/Components/card/card";
 import { ArrowRight, Compass } from "lucide-react";
 import { useEffect, useState } from "react";
-import { StepOne } from "./steps/step-one";
-import { StepTwo } from "./steps/step-two";
-import { StepThree } from "./steps/step-three";
-import { FormState } from "./types/FormTypes";
+import { StepOne } from "@/Components/onboarding-steps/step-one";
+import { StepTwo } from "@/Components/onboarding-steps/step-two";
+import { StepThree } from "@/Components/onboarding-steps/step-three";
+import { IOnboardingForm } from "@/types/onboarding/onboarding-types";
 import { Session } from "@supabase/supabase-js";
-import { checkSession, fetchProfile } from "./functions/onboardingFunctions";
-import { updateUserProfile } from "@/supabase/functions/profile";
+import {
+  checkSession,
+  fetchProfile,
+} from "../../functions/onboarding/onboarding-functions";
+import { updateUserProfile } from "@/functions/supabase/supabase-functions";
 
 export default function Onboarding() {
   const [session, setSession] = useState<Session | null>(null);
   const [step, setStep] = useState<number>(1);
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<IOnboardingForm>({
     name: "",
     ageRange: "",
     interests: [] as string[],

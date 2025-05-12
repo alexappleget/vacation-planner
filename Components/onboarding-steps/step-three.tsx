@@ -7,9 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/select/select";
-import { IFormSteps } from "../types/FormTypes";
+import { IOnboardingFormSteps } from "@/types/onboarding/onboarding-types";
 
-export const StepThree = ({ form, setForm }: IFormSteps) => {
+export const StepThree = ({ form, setForm }: IOnboardingFormSteps) => {
   const cuisines = [
     "Italian",
     "Japanese",

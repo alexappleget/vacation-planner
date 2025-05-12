@@ -1,6 +1,6 @@
 import { supabaseClient } from "@/supabase/client";
-import { fetchUserProfile } from "@/supabase/functions/profile";
-import { ICheckSession, IFetchProfile } from "../types/onboardingFunctionTypes";
+import { fetchUserProfile } from "../supabase/supabase-functions";
+import { ICheckSession, IFetchProfile } from "@/types/supabase/supabase-types";
 
 export const checkSession = async ({ setSession }: ICheckSession) => {
   const { data, error } = await supabaseClient.auth.getSession();

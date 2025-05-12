@@ -1,5 +1,5 @@
+import { IOnboardingForm } from "../onboarding/onboarding-types";
 import { Session } from "@supabase/supabase-js";
-import { FormState } from "./FormTypes";
 
 export interface ICheckSession {
   setSession: React.Dispatch<React.SetStateAction<Session | null>>;
@@ -7,5 +7,5 @@ export interface ICheckSession {
 
 export interface IFetchProfile {
   userId: string;
-  setForm: React.Dispatch<React.SetStateAction<FormState>>;
+  setForm: React.Dispatch<React.SetStateAction<IOnboardingForm>>;
 }

@@ -11,9 +11,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/select/select";
-import { IFormSteps } from "../types/FormTypes";
+import { IOnboardingFormSteps } from "@/types/onboarding/onboarding-types";
 
-export const StepOne = ({ form, setForm }: IFormSteps) => {
+export const StepOne = ({ form, setForm }: IOnboardingFormSteps) => {
   return (
     <div className="space-y-4">
       <div className="space-y-2">

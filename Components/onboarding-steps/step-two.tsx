@@ -1,8 +1,8 @@
 import { Checkbox } from "@/Components/checkbox/checkbox";
 import { Label } from "@/Components/label/label";
-import { IFormSteps } from "../types/FormTypes";
+import { IOnboardingFormSteps } from "@/types/onboarding/onboarding-types";
 
-export const StepTwo = ({ form, setForm }: IFormSteps) => {
+export const StepTwo = ({ form, setForm }: IOnboardingFormSteps) => {
   const interests = [
     "Hiking",
     "Museums",

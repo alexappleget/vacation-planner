@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/select/select";
-import { IOnboardingFormSteps } from "@/types/onboarding/onboarding-types";
+import { IOnboardingFormSteps } from "@/types/interface";
 
 export const StepOne = ({ form, setForm }: IOnboardingFormSteps) => {
   return (
@@ -27,13 +27,13 @@ export const StepOne = ({ form, setForm }: IOnboardingFormSteps) => {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="ageRange">Age Range</Label>
+        <Label htmlFor="age">Age</Label>
         <Select
-          value={form.ageRange}
-          onValueChange={(value) => setForm({ ...form, ageRange: value })}
+          value={form.age}
+          onValueChange={(value) => setForm({ ...form, age: value })}
         >
-          <SelectTrigger id="ageRange">
-            <SelectValue placeholder="Select your age range" />
+          <SelectTrigger id="age">
+            <SelectValue placeholder="Select your age" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="18-24">18-24</SelectItem>

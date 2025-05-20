@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/select/select";
-import { IOnboardingFormSteps } from "@/types/onboarding/onboarding-types";
+import { IOnboardingFormSteps } from "@/types/interface";
 
 export const StepThree = ({ form, setForm }: IOnboardingFormSteps) => {
   const cuisines = [
@@ -49,15 +49,15 @@ export const StepThree = ({ form, setForm }: IOnboardingFormSteps) => {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="dietaryPreferences">Dietary Preferences</Label>
+        <Label htmlFor="dietaryRestrictions">Dietary Restrictions</Label>
         <Select
-          value={form.dietaryPreferences}
+          value={form.dietaryRestrictions}
           onValueChange={(value) =>
-            setForm({ ...form, dietaryPreferences: value })
+            setForm({ ...form, dietaryRestrictions: value })
           }
         >
-          <SelectTrigger id="dietaryPreferences">
-            <SelectValue placeholder="Select dietary preference" />
+          <SelectTrigger id="dietaryRestrictions">
+            <SelectValue placeholder="Select dietary restriction" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="none">No Restrictions</SelectItem>

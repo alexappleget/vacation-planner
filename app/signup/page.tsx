@@ -16,10 +16,12 @@ import { Compass } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Login() {
-  const { logIn } = useAuth();
+export default function SignUp() {
+  const { signUp } = useAuth();
+  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   return (
     <section className="min-h-screen flex flex-col px-4">
@@ -35,12 +37,24 @@ export default function Login() {
       <div className="flex-1 flex items-center justify-center">
         <Card className="mx-auto max-w-md w-full">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Log in</CardTitle>
+            <CardTitle className="text-2xl">Create an Account</CardTitle>
             <CardDescription>
-              Enter your email and password to access your account
+              Fill out the information below to create your account and start
+              planning your dream vacation.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                placeholder="John Smith"
+                required
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -61,30 +75,32 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div className="text-right text-sm">
-                <Link
-                  href="/forgot-password"
-                  className="text-primary hover:underline"
-                >
-                  Forgot password?
-                </Link>
-              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Confirm Password</Label>
+              <Input
+                id="password"
+                required
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
             <Button
               className="w-full border-2 p-2 rounded-lg"
-              onClick={() => logIn({ email, password })}
+              onClick={() => signUp({ name, email, password, confirmPassword })}
             >
-              Log in
+              Sign Up
             </Button>
             <div className="text-center text-sm">
-              Don&apos;t have an account?{" "}
+              Already have an account?{" "}
               <Link
-                href="/signup"
+                href="/login"
                 className="underline underline-offset-4 hover:text-primary"
               >
-                Sign up
+                Log in
               </Link>
             </div>
           </CardFooter>

@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/Components/card/card";
 import { ArrowRight, Compass } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StepOne } from "@/Components/onboarding-steps/step-one";
 import { StepTwo } from "@/Components/onboarding-steps/step-two";
 import { StepThree } from "@/Components/onboarding-steps/step-three";
@@ -24,13 +24,26 @@ export default function Onboarding() {
   const router = useRouter();
   const [step, setStep] = useState<number>(1);
   const [form, setForm] = useState<IProfileForm>({
-    name: profile?.name || "",
-    age: profile?.age || "",
-    interests: profile?.interests || [],
-    energyLevel: profile?.energyLevel || "balanced",
-    dietaryRestrictions: profile?.dietaryRestrictions || "",
-    favoriteCuisines: profile?.favoriteCuisines || [],
+    name: "",
+    age: "",
+    interests: [],
+    energyLevel: "balanced",
+    dietaryRestrictions: "",
+    favoriteCuisines: [],
   });
+
+  useEffect(() => {
+    if (profile) {
+      setForm({
+        name: profile.name || "",
+        age: profile.age || "",
+        interests: profile.interests || [],
+        energyLevel: profile.energyLevel || "balanced",
+        dietaryRestrictions: profile.dietaryRestrictions || "",
+        favoriteCuisines: profile.favoriteCuisines || [],
+      });
+    }
+  }, [profile]);
 
   const handleComplete = async () => {
     const { error } = await supabaseClient
@@ -49,6 +62,7 @@ export default function Onboarding() {
     if (error) throw error;
 
     await refreshProfile();
+    router.push("/dashboard");
   };
 
   const handleNext = () => {

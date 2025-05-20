@@ -4,13 +4,6 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "@/Components/radio-group/radio-group";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/Components/select/select";
 import { IOnboardingFormSteps } from "@/types/interface";
 
 export const StepOne = ({ form, setForm }: IOnboardingFormSteps) => {
@@ -28,22 +21,12 @@ export const StepOne = ({ form, setForm }: IOnboardingFormSteps) => {
 
       <div className="space-y-2">
         <Label htmlFor="age">Age</Label>
-        <Select
+        <Input
+          id="age"
+          placeholder="Enter your age"
           value={form.age}
-          onValueChange={(value) => setForm({ ...form, age: value })}
-        >
-          <SelectTrigger id="age">
-            <SelectValue placeholder="Select your age" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="18-24">18-24</SelectItem>
-            <SelectItem value="25-34">25-34</SelectItem>
-            <SelectItem value="35-44">35-44</SelectItem>
-            <SelectItem value="45-54">45-54</SelectItem>
-            <SelectItem value="55-64">55-64</SelectItem>
-            <SelectItem value="65+">65+</SelectItem>
-          </SelectContent>
-        </Select>
+          onChange={(e) => setForm({ ...form, age: e.target.value })}
+        />
       </div>
 
       <div className="space-y-2">

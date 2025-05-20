@@ -15,15 +15,21 @@ import { useAuth } from "@/context/AuthContext";
 import { Compass } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignUp() {
-  const { signUp } = useAuth();
+  const { signUp, loading, user } = useAuth();
   const router = useRouter();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.push("/dashboard");
+    }
+  }, [user, loading, router]);
 
   const handleSignUp = async () => {
     await signUp({ name, email, password, confirmPassword });

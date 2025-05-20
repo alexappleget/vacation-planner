@@ -11,12 +11,20 @@ export const HomeHeader = (): JSX.Element => {
           <span>Vacation Planner</span>
         </div>
 
-        <Link
-          href="/login"
-          className="px-4 py-2 text-sm font-medium rounded-lg bg-[#0077b6] text-[#f1f5f9] hover:bg-[#005f99] transition"
-        >
-          Login
-        </Link>
+        <div className="flex gap-4">
+          <Link
+            href="/login"
+            className="px-4 py-2 text-sm font-medium rounded-lg bg-[#0077b6] text-[#f1f5f9] hover:bg-[#005f99] transition"
+          >
+            Login
+          </Link>
+          <Link
+            href="/signup"
+            className="px-4 py-2 text-sm font-medium rounded-lg border-2 border-[#0077b6] text-[#0077b6] hover:bg-[#0077b6] hover:text-[#f1f5f9] transition"
+          >
+            Sign Up
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -16,10 +16,12 @@ import { StepTwo } from "@/Components/onboarding-steps/step-two";
 import { StepThree } from "@/Components/onboarding-steps/step-three";
 import { IProfileForm } from "@/types/interface";
 import { useAuth } from "@/context/AuthContext";
-import { supabase } from "@/supabase/client";
+import { supabaseClient } from "@/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function Onboarding() {
   const { logOut, profile, refreshProfile } = useAuth();
+  const router = useRouter();
   const [step, setStep] = useState<number>(1);
   const [form, setForm] = useState<IProfileForm>({
     name: profile?.name || "",
@@ -31,7 +33,7 @@ export default function Onboarding() {
   });
 
   const handleComplete = async () => {
-    const { error } = await supabase
+    const { error } = await supabaseClient
       .from("profiles")
       .update({
         name: form.name,
@@ -53,12 +55,17 @@ export default function Onboarding() {
     setStep((previous) => previous + 1);
   };
 
+  const handleLogout = async () => {
+    await logOut();
+    router.push("/login");
+  };
+
   return (
     <section className="h-screen flex flex-col px-4">
       <div className="container mx-auto border-b border-black flex items-center gap-2 font-bold text-xl h-16">
         <Compass className="h-7 w-7 text-black" />
         <span>Vacation Planner</span>
-        <Button onClick={logOut}>Log Out</Button>
+        <Button onClick={handleLogout}>Log Out</Button>
       </div>
 
       <div className="flex-1 flex items-center justify-center">

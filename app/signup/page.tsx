@@ -14,14 +14,21 @@ import { Label } from "@/Components/label/label";
 import { useAuth } from "@/context/AuthContext";
 import { Compass } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUp() {
   const { signUp } = useAuth();
+  const router = useRouter();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const handleSignUp = async () => {
+    await signUp({ name, email, password, confirmPassword });
+    router.push("/onboarding");
+  };
 
   return (
     <section className="min-h-screen flex flex-col px-4">
@@ -90,7 +97,7 @@ export default function SignUp() {
           <CardFooter className="flex flex-col space-y-4">
             <Button
               className="w-full border-2 p-2 rounded-lg"
-              onClick={() => signUp({ name, email, password, confirmPassword })}
+              onClick={handleSignUp}
             >
               Sign Up
             </Button>

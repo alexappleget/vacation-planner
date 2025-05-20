@@ -14,12 +14,19 @@ import { Label } from "@/Components/label/label";
 import { useAuth } from "@/context/AuthContext";
 import { Compass } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
   const { logIn } = useAuth();
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const handleLogin = async () => {
+    await logIn({ email, password });
+    router.push("/dashboard");
+  };
 
   return (
     <section className="min-h-screen flex flex-col px-4">
@@ -74,7 +81,7 @@ export default function Login() {
           <CardFooter className="flex flex-col space-y-4">
             <Button
               className="w-full border-2 p-2 rounded-lg"
-              onClick={() => logIn({ email, password })}
+              onClick={handleLogin}
             >
               Log in
             </Button>
